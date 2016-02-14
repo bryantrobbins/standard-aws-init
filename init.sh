@@ -15,9 +15,11 @@ echo "Installing rubygems"
 gem install r10k hiera-eyaml hiera-eyaml-kms
 
 echo "Running r10k"
-/usr/local/bin/r10k deploy production -v debug2 &> /var/log/puppet/r10k.log
+pushd /root/init
+/usr/local/bin/r10k deploy environment -v debug &> /var/log/puppet/r10k.log
 
 echo "Running Puppet"
-/usr/bin/puppet apply -l /var/log/puppet/site.log --hiera_config hiera.yaml site.pp
+puppet apply /etc/puppet/code/environments/production/site.pp --hiera_config hiera.yaml --modulepath=/etc/puppet/code/environments/production/modules/:/etc/puppet/code/environments/production/site
+popd
 
 echo "Done with INIT."
