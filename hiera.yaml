@@ -2,7 +2,7 @@
 :backends:
   - yaml
 :yaml:
-  :datadir: "/etc/puppet/code/environments/%{environment}/hieradata"
+  :datadir: "/root/init/hieradata"
 :hierarchy:
   - "hosts/%{::host}"
   - common
